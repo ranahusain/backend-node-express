@@ -44,8 +44,8 @@ const StudentSchema = new Schema({
   },
 });
 
-StudentSchema.index({ rollNumber: 1 }, { unique: true });
-StudentSchema.index({ email: 1 }, { unique: true });
+// `unique: true` on the schema paths already creates the indexes.
+// Avoid declaring them twice which causes Mongoose duplicate-index warnings.
 
 const StudentModel = model("Student", StudentSchema);
 

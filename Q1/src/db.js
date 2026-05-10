@@ -5,9 +5,9 @@ dotenv.config();
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-    });
+    // No connection options are necessary for modern drivers here;
+    // `useNewUrlParser` is deprecated and has no effect on recent drivers.
+    const conn = await mongoose.connect(process.env.MONGODB_URI);
     console.log("MongoDB Connected");
     return conn;
   } catch (error) {

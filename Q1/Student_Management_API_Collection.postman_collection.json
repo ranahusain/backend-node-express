@@ -1,0 +1,448 @@
+{
+  "info": {
+    "_postman_id": "student-management-api",
+    "name": "Student Management API",
+    "description": "Comprehensive API collection for testing Student Management System endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Create Student",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"rollNumber\": \"21-CS-105\",\n  \"name\": \"Ali Hassan\",\n  \"email\": \"ali.hassan@university.edu\",\n  \"department\": \"Computer Science\",\n  \"cgpa\": 3.78,\n  \"enrollmentYear\": 2021\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/students",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "students"]
+        },
+        "description": "Create a new student record"
+      }
+    },
+    {
+      "name": "2. Create Student (Additional Sample)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"rollNumber\": \"21-CS-106\",\n  \"name\": \"Sarah Ahmed\",\n  \"email\": \"sarah.ahmed@university.edu\",\n  \"department\": \"Computer Science\",\n  \"cgpa\": 3.95,\n  \"enrollmentYear\": 2021\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/students",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "students"]
+        },
+        "description": "Create another student record"
+      }
+    },
+    {
+      "name": "3. Create Student (Electrical)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"rollNumber\": \"21-EE-201\",\n  \"name\": \"Muhammad Karim\",\n  \"email\": \"muhammad.karim@university.edu\",\n  \"department\": \"Electrical\",\n  \"cgpa\": 3.45,\n  \"enrollmentYear\": 2021\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/students",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "students"]
+        },
+        "description": "Create a student in Electrical department"
+      }
+    },
+    {
+      "name": "4. Get All Students",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/students",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "students"]
+        },
+        "description": "Retrieve all students from database"
+      }
+    },
+    {
+      "name": "5. Get All Students with Pagination",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/students?page=1&limit=2",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "students"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "2"
+            }
+          ]
+        },
+        "description": "Get students with pagination (page 1, 2 per page)"
+      }
+    },
+    {
+      "name": "6. Get Students by Department (Computer Science)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/students?department=Computer Science",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "students"],
+          "query": [
+            {
+              "key": "department",
+              "value": "Computer Science"
+            }
+          ]
+        },
+        "description": "Filter students by Computer Science department"
+      }
+    },
+    {
+      "name": "7. Get Students by Department (Electrical)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/students?department=Electrical",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "students"],
+          "query": [
+            {
+              "key": "department",
+              "value": "Electrical"
+            }
+          ]
+        },
+        "description": "Filter students by Electrical department"
+      }
+    },
+    {
+      "name": "8. Get Students with Filtering & Pagination",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/students?department=Computer Science&page=1&limit=10",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "students"],
+          "query": [
+            {
+              "key": "department",
+              "value": "Computer Science"
+            },
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        },
+        "description": "Get students filtered by department with pagination"
+      }
+    },
+    {
+      "name": "9. Search Students by Name",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/students/search?name=Ali",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "students", "search"],
+          "query": [
+            {
+              "key": "name",
+              "value": "Ali"
+            }
+          ]
+        },
+        "description": "Search for students by name (case-insensitive, partial match)"
+      }
+    },
+    {
+      "name": "10. Search Students by Name (Sarah)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/students/search?name=Sarah",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "students", "search"],
+          "query": [
+            {
+              "key": "name",
+              "value": "Sarah"
+            }
+          ]
+        },
+        "description": "Search for students named Sarah"
+      }
+    },
+    {
+      "name": "11. Get Student by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/students/{{studentId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "students", "{{studentId}}"]
+        },
+        "description": "Retrieve a single student by MongoDB _id. Replace {{studentId}} with actual student ID"
+      }
+    },
+    {
+      "name": "12. Update Student (PUT - Full Update)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"rollNumber\": \"21-CS-105\",\n  \"name\": \"Ali Hassan Updated\",\n  \"email\": \"ali.updated@university.edu\",\n  \"department\": \"Computer Science\",\n  \"cgpa\": 3.85,\n  \"enrollmentYear\": 2021\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/students/{{studentId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "students", "{{studentId}}"]
+        },
+        "description": "Update all fields of a student record. Replace {{studentId}} with actual student ID"
+      }
+    },
+    {
+      "name": "13. Update Student (PATCH - Partial Update)",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cgpa\": 3.90\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/students/{{studentId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "students", "{{studentId}}"]
+        },
+        "description": "Partial update - only update specific fields. Replace {{studentId}} with actual student ID"
+      }
+    },
+    {
+      "name": "14. Update Student (PATCH - Multiple Fields)",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Ali Hassan\",\n  \"email\": \"ali.newemail@university.edu\",\n  \"cgpa\": 3.92\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/students/{{studentId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "students", "{{studentId}}"]
+        },
+        "description": "Partial update with multiple fields. Replace {{studentId}} with actual student ID"
+      }
+    },
+    {
+      "name": "15. Soft Delete (Deactivate Student)",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/students/{{studentId}}/deactivate",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "students", "{{studentId}}", "deactivate"]
+        },
+        "description": "Soft delete - set isActive to false instead of removing the record. Replace {{studentId}} with actual student ID"
+      }
+    },
+    {
+      "name": "16. Hard Delete (Delete Student Permanently)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/students/{{studentId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "students", "{{studentId}}"]
+        },
+        "description": "Permanently delete a student from the database. Replace {{studentId}} with actual student ID"
+      }
+    },
+    {
+      "name": "17. Test Invalid Email (Error Handling)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"rollNumber\": \"21-CS-999\",\n  \"name\": \"Invalid Student\",\n  \"email\": \"not-a-valid-email\",\n  \"department\": \"Computer Science\",\n  \"cgpa\": 3.5,\n  \"enrollmentYear\": 2021\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/students",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "students"]
+        },
+        "description": "Test invalid email validation"
+      }
+    },
+    {
+      "name": "18. Test Missing Required Field (Error Handling)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"rollNumber\": \"21-CS-999\",\n  \"name\": \"Test Student\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/students",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "students"]
+        },
+        "description": "Test missing required fields validation"
+      }
+    },
+    {
+      "name": "19. Test Invalid CGPA (Error Handling)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"rollNumber\": \"21-CS-999\",\n  \"name\": \"Invalid CGPA Student\",\n  \"email\": \"test@university.edu\",\n  \"department\": \"Computer Science\",\n  \"cgpa\": 5.5,\n  \"enrollmentYear\": 2021\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/students",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "students"]
+        },
+        "description": "Test CGPA validation (should be between 0.0 and 4.0)"
+      }
+    },
+    {
+      "name": "20. Get Non-Existent Student (404)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/students/507f1f77bcf86cd799439011",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "students", "507f1f77bcf86cd799439011"]
+        },
+        "description": "Test 404 error when student not found (using dummy MongoDB ID)"
+      }
+    }
+  ]
+}
