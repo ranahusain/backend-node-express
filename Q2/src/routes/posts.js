@@ -10,13 +10,11 @@ const router = express.Router();
 const validate = (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    res
-      .status(400)
-      .json({
-        success: false,
-        message: "Validation failed",
-        errors: errors.array(),
-      });
+    res.status(400).json({
+      success: false,
+      message: "Validation failed",
+      errors: errors.array(),
+    });
     return false;
   }
   return true;
@@ -97,26 +95,29 @@ router.get("/:id", [objectId("id", "post")], async (req, res) => {
   if (!validate(req, res)) return;
 
   try {
-    const post = await Post.findById(req.params.id).populate(
-      "author",
-      "username email",
-    );
+    const post = await Post.findById(req.params.id).populate([
+      {
+        path: "author",
+        select: "username email",
+      },
+      {
+        path: "comments",
+        options: { sort: { createdAt: -1 } },
+        populate: {
+          path: "user",
+          select: "username email",
+        },
+      },
+    ]);
     if (!post) {
       return res
         .status(404)
         .json({ success: false, message: "Post not found" });
     }
 
-    const comments = await Comment.find({ post: req.params.id })
-      .populate("user", "username email")
-      .sort({ createdAt: -1 });
-
     res.status(200).json({
       success: true,
-      data: {
-        ...post.toObject(),
-        comments,
-      },
+      data: post,
     });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
